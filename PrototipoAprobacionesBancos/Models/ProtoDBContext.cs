@@ -147,6 +147,7 @@ namespace PrototipoAprobacionesBancos.Models
                     .IsUnicode(false);
             });
             modelBuilder.Entity<HistorialAprobacionesEdicion>().HasQueryFilter(x => x.Estado == "1");
+            modelBuilder.Entity<CamposQueNecesitanAprobacion>().HasQueryFilter(x => (bool)x.Activo);
             OnModelCreatingPartial(modelBuilder);
         }
 
@@ -191,7 +192,8 @@ namespace PrototipoAprobacionesBancos.Models
                                     Idregistro = Id,
                                     FkIdCamposQueNecesitanAprobacion = record.IdCamposQueNecesitanAprobacion
                                 });
-                                change.State = EntityState.Unchanged;
+                                //change.State = EntityState.Unchanged;
+                                change.Property(prop.Name).IsModified = false;
                             }
                         }
                     }
