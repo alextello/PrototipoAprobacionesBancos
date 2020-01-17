@@ -1,0 +1,36 @@
+﻿@page "/AprobarSolicitudes"
+@inherits AprobarEdicionesBase;
+<h3>Aprobar Ediciones</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Valor actual</th>
+            <th scope="col">Solicitud nuevo valor</th>
+            <th scope="col">Descripción</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{int i = 1; }
+        @foreach (var col in Solicitudes)
+        {
+            <tr>
+                <th scope="row">@i</th>
+                <td>@col.ValorAnterior</td>
+                <td>@col.ValorNuevo</td>
+                <td>@col.FkIdCamposQueNecesitanAprobacionNavigation.Descripcion</td>
+                <td><input type="text" @bind="@col.Observaciones" class="form-control" /></td>
+                <td @onclick="@(() => Aprobar(col))" style="cursor: pointer">
+                    Aprobar <i class="fa fa-check"></i>
+                </td>
+                <td @onclick="@(() => Denegar(col))" style="cursor: pointer">
+                    Denegar <i class="fa fa-eraser"></i>
+                </td>
+            </tr>
+            i++;
+        }
+    </tbody>
+</table>

@@ -1,0 +1,24 @@
+﻿@page "/"
+@inherits IndexBase;
+<h1>Formulario de creación</h1>
+
+<EditForm Model="@Colaborador" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    @*<ValidationSummary />*@
+    <div class="form-group">
+        <label for="Nombre">Nombre</label>
+        <InputText @bind-Value="Colaborador.Nombre" class="form-control" />
+        <ValidationMessage For="@(() => Colaborador.Nombre)" />
+    </div>
+    <div class="form-group">
+        <label for="Apellido">Apellido</label>
+        <InputText @bind-Value="Colaborador.Apellido" class="form-control" />
+        <ValidationMessage For="@(() => Colaborador.Apellido)" />
+    </div>
+    <div class="form-group">
+        <label for="Puesto">Puesto</label>
+        <InputNumber @bind-Value="Colaborador.FkIpuesto" class="form-control" />
+        <ValidationMessage For="@(() => Colaborador.FkIpuesto)" />
+    </div>
+    <button class="btn btn-outline-primary" type="submit">Submit</button>
+</EditForm>

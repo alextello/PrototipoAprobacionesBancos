@@ -1,0 +1,11 @@
+﻿@using PrototipoAprobacionesBancos.ExtensionMethods;
+@inherits InputComponentBase;
+@if (Flag)
+{
+    <p>(BLOQUEADO)</p>
+    <p>@BindingValue</p>
+}
+else
+{
+    <InputText type="@Tipo" @bind-Value="@BindingValue" class="form-control" />
+}

@@ -1,0 +1,31 @@
+﻿@page "/ListarColaboradores"
+@inherits ListaColaboradoresBase;
+<h3>Lista de colaboradores</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Puesto</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{int i = 1; }
+        @foreach (var col in Colaboradores)
+        {
+            <tr>
+                <th scope="row">@i</th>
+                <td>@col.Nombre</td>
+                <td>@col.Apellido</td>
+                <td>@col.FkIpuestoNavigation.Nombre</td>
+                <td @onclick="@(() => IrAPerfilAsync(col.IdColaborador))">
+                    <i class="fa fa-edit"></i>
+                </td>
+            </tr>
+            i++;
+        }
+    </tbody>
+</table>
