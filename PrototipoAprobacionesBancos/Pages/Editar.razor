@@ -2,8 +2,6 @@
 @inherits EditarBase;
 <EditForm Model="@Colaborador" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
-    @*<ValidationSummary />*@
-
     <div class="form-group">
         <label for="Nombre">Nombre</label>
         <InputComponent @bind-BindingValue="Colaborador.Nombre" Campo="@nameof(Colaborador.Nombre)" Tipo="@Colaborador.GetType()" type="text" Id="@Colaborador.IdColaborador" />
@@ -14,10 +12,5 @@
         <InputComponent @bind-BindingValue="Colaborador.Apellido" Campo="@nameof(Colaborador.Apellido)" Tipo="@Colaborador.GetType()" type="text" Id="@Colaborador.IdColaborador" />
         <ValidationMessage For="@(() => Colaborador.Apellido)" />
     </div>
-    @*<div class="form-group">
-            <label for="Apellido">Apellido</label>
-            <InputComponent @bind-BindingValue="Colaborador.FkIpuesto" Campo="@nameof(Colaborador.FkIpuesto)" Tipo="@Colaborador.GetType()" type="text" Id="@Colaborador.IdColaborador" />
-            <ValidationMessage For="@(() => Colaborador.FkIpuesto)" />
-        </div>*@
     <button class="btn btn-outline-primary" type="submit">Editar</button>
 </EditForm>

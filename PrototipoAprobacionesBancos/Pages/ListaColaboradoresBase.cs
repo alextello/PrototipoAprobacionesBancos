@@ -21,7 +21,7 @@ namespace PrototipoAprobacionesBancos.Pages
         protected override Task OnInitializedAsync()
         {
             StateHasChanged();
-            Colaboradores = _context.Colaborador.Include(x => x.FkIpuestoNavigation).ToList();
+            Colaboradores = _context.Colaborador.Include(x => x.FkIpuestoNavigation).AsNoTracking().ToList();
             return base.OnInitializedAsync();
         }
 
