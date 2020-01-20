@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Configuration;
 
@@ -20,6 +21,8 @@ namespace PrototipoAprobacionesBancos.Models
             : base(options)
         {
             _httpContextAccessor = httpContextAccessor;
+            this.ChangeTracker.CascadeDeleteTiming = CascadeTiming.Never;
+            this.ChangeTracker.DeleteOrphansTiming = CascadeTiming.Never;
         }
 
         public string Accion { get; set; }
@@ -192,10 +195,8 @@ namespace PrototipoAprobacionesBancos.Models
                                     Idregistro = Id,
                                     FkIdCamposQueNecesitanAprobacion = record.IdCamposQueNecesitanAprobacion
                                 });
-                                //change.State = EntityState.Unchanged;
                                 change.Property(prop.Name).IsModified = false;
                                 change.State = EntityState.Detached;
-                                //change.Reload();
                             }
                         }
                     }

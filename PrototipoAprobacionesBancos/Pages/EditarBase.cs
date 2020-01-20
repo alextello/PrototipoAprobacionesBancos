@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.EntityFrameworkCore;
-using PrototipoAprobacionesBancos.ExtensionMethods;
+using ExtensionMethods;
 using PrototipoAprobacionesBancos.Models;
 using System;
 using System.Collections;

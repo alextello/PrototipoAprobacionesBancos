@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using ExtensionMethods;
+using Microsoft.AspNetCore.Components;
 using Microsoft.EntityFrameworkCore;
-using PrototipoAprobacionesBancos.ExtensionMethods;
+
+//using PrototipoAprobacionesBancos.ExtensionMethods;
 using PrototipoAprobacionesBancos.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace PrototipoAprobacionesBancos.Components
@@ -43,7 +43,11 @@ namespace PrototipoAprobacionesBancos.Components
             get => _value;
             set
             {
-                if (_value == value) return;
+                if (_value == value)
+                {
+                    return;
+                }
+
                 _value = value;
                 BindingValueChanged.InvokeAsync(value);
             }
@@ -57,7 +61,7 @@ namespace PrototipoAprobacionesBancos.Components
 
         protected override Task OnInitializedAsync()
         {
-            var tabla = Tipo.Tabla();
+            string tabla = Tipo.Tabla(_context);
             Flag = _context.HistorialAprobacionesEdicion.Include(x => x.FkIdCamposQueNecesitanAprobacionNavigation)
                 .Where(x => x.FkIdCamposQueNecesitanAprobacionNavigation.Tabla == tabla &&
                         x.FkIdCamposQueNecesitanAprobacionNavigation.Campo == Campo &&
