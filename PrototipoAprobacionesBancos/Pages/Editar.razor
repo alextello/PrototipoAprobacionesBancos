@@ -12,5 +12,10 @@
         <InputComponent @bind-BindingValue="Colaborador.Apellido" Campo="@nameof(Colaborador.Apellido)" Tipo="@Colaborador.GetType()" type="text" Id="@Colaborador.IdColaborador" />
         <ValidationMessage For="@(() => Colaborador.Apellido)" />
     </div>
+    <div class="form-group">
+        <label for="Apellido">Apellido</label>
+        <InputComponent @bind-BindingValue="Puesto.Nombre" Campo="@nameof(Puesto.Nombre)" Tipo="@Puesto.GetType()" type="text" Id="@Puesto.IdPuesto" />
+        <ValidationMessage For="@(() => Puesto.Nombre)" />
+    </div>
     <button class="btn btn-outline-primary" type="submit">Editar</button>
 </EditForm>

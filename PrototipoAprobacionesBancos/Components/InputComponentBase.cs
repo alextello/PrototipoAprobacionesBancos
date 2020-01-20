@@ -5,6 +5,7 @@ using PrototipoAprobacionesBancos.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace PrototipoAprobacionesBancos.Components
@@ -12,6 +13,9 @@ namespace PrototipoAprobacionesBancos.Components
     public class InputComponentBase : ComponentBase
     {
         public bool Flag { get; set; }
+
+        //[Parameter]
+        //public Expression<Func<T>> For { get; set; }
 
         [Parameter]
         public int Id { get; set; }

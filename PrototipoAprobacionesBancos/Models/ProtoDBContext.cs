@@ -161,7 +161,7 @@ namespace PrototipoAprobacionesBancos.Models
         {
             if (!_httpContextAccessor.HttpContext.User.IsInRole("WWW_GTH_EXPEDIENTES_SECRETARIAS"))
             {
-                var modifiedEntities = ChangeTracker.Entries()
+                var modifiedEntities = base.ChangeTracker.Entries()
                                       .Where(p => p.State == EntityState.Modified).ToList();
                 foreach (var change in modifiedEntities)
                 {
@@ -194,6 +194,8 @@ namespace PrototipoAprobacionesBancos.Models
                                 });
                                 //change.State = EntityState.Unchanged;
                                 change.Property(prop.Name).IsModified = false;
+                                change.State = EntityState.Detached;
+                                //change.Reload();
                             }
                         }
                     }

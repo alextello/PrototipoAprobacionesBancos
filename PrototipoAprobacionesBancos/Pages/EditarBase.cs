@@ -2,10 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using PrototipoAprobacionesBancos.ExtensionMethods;
 using PrototipoAprobacionesBancos.Models;
-using PrototipoAprobacionesBancos.Utilities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -23,13 +24,15 @@ namespace PrototipoAprobacionesBancos.Pages
         protected NavigationManager _nav { get; set; }
 
         public Colaborador Colaborador { get; set; }
+        public Puestos Puesto { get; set; }
 
         public List<HistorialAprobacionesEdicion> hst { get; set; }
 
         protected override Task OnInitializedAsync()
         {
+            Puesto = _context.Puestos.FirstOrDefault();
             Colaborador = _context.Colaborador.Include(x => x.FkIpuestoNavigation).
-                                FirstOrDefault(x => x.IdColaborador == IdColaborador);
+                                    Where(x => x.IdColaborador == IdColaborador).FirstOrDefault();
 
             return base.OnInitializedAsync();
         }
@@ -37,6 +40,7 @@ namespace PrototipoAprobacionesBancos.Pages
         protected void HandleValidSubmit()
         {
             _context.Update(Colaborador);
+            _context.Update(Puesto);
             _context.SaveChanges();
             StateHasChanged();
             _nav.NavigateTo($"/ListarColaboradores");
